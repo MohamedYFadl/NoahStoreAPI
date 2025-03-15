@@ -17,7 +17,7 @@ namespace NoahStore.Infrastructure
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
-            return services
+            return services;
         }
     }
 }
