@@ -11,7 +11,7 @@ namespace NoahStore.Infrastructure
     {
         public static IServiceCollection AddServices(this IServiceCollection services,IConfiguration configuration)
         {
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));

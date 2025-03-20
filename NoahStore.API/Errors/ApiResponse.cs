@@ -2,7 +2,7 @@
 {
     public class ApiResponse
     {
-        public ApiResponse(int statusCode, string? message)
+        public ApiResponse(int statusCode, string? message = null)
         {
             StatusCode = statusCode;
             Message = message?? GetStatusMessage(statusCode);

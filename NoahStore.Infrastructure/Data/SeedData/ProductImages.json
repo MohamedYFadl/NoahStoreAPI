@@ -1,0 +1,52 @@
+[
+    {
+        "CreatedAt": "2023-10-01T00:00:00Z",
+        "UpdatedAt": null,
+        "IsDeleted": false,
+        "ImageURL": "https://example.com/images/smartphone1.jpg",
+        "AltText": "Smartphone Image",
+        "Caption": "Front view of the smartphone",
+        "FileSize": 1024,
+        "ProductId": 1
+    },
+    {
+        "CreatedAt": "2023-10-01T00:00:00Z",
+        "UpdatedAt": null,
+        "IsDeleted": false,
+        "ImageURL": "https://example.com/images/laptop1.jpg",
+        "AltText": "Laptop Image",
+        "Caption": "Front view of the laptop",
+        "FileSize": 2048,
+        "ProductId": 2
+    },
+    {
+        "CreatedAt": "2023-10-01T00:00:00Z",
+        "UpdatedAt": null,
+        "IsDeleted": false,
+        "ImageURL": "https://example.com/images/tshirt1.jpg",
+        "AltText": "T-Shirt Image",
+        "Caption": "Front view of the t-shirt",
+        "FileSize": 512,
+        "ProductId": 3
+    },
+    {
+        "CreatedAt": "2023-10-01T00:00:00Z",
+        "UpdatedAt": null,
+        "IsDeleted": false,
+        "ImageURL": "https://example.com/images/gamingconsole1.jpg",
+        "AltText": "Gaming Console Image",
+        "Caption": "Front view of the gaming console",
+        "FileSize": 1024,
+        "ProductId": 21
+    },
+    {
+        "CreatedAt": "2023-10-01T00:00:00Z",
+        "UpdatedAt": null,
+        "IsDeleted": false,
+        "ImageURL": "https://example.com/images/headphones1.jpg",
+        "AltText": "Headphones Image",
+        "Caption": "Over-ear noise-cancelling headphones",
+        "FileSize": 2048,
+        "ProductId": 22
+    }
+]

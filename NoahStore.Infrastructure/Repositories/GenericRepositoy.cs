@@ -25,10 +25,10 @@ namespace NoahStore.Infrastructure.Repositories
         }
 
         public async Task<IReadOnlyList<T>> GetAllAsync()
-            => await _db.Set<T>().ToListAsync();
+            => await _db.Set<T>().AsNoTracking().ToListAsync();
 
         public async Task<IReadOnlyList<T>> GetAllAsync(ISpecification<T> specs)
-            => await ApplySpecs(specs).ToListAsync();
+            => await ApplySpecs(specs).AsNoTracking().ToListAsync();
 
         public async Task<T> GetByIdAsync(int id)
             => await _db.Set<T>().FindAsync(id);

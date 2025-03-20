@@ -1,0 +1,42 @@
+[
+    {
+        "CreatedAt": "2023-10-01T00:00:00Z",
+        "UpdatedAt": null,
+        "IsDeleted": false,
+        "Rating": 5,
+        "Comment": "Great smartphone!",
+        "ProductId": 2
+    },
+    {
+        "CreatedAt": "2023-10-01T00:00:00Z",
+        "UpdatedAt": null,
+        "IsDeleted": false,
+        "Rating": 4,
+        "Comment": "Good laptop, but a bit pricey.",
+        "ProductId": 3
+    },
+    {
+        "CreatedAt": "2023-10-01T00:00:00Z",
+        "UpdatedAt": null,
+        "IsDeleted": false,
+        "Rating": 5,
+        "Comment": "Very comfortable t-shirt!",
+        "ProductId": 4
+    },
+    {
+        "CreatedAt": "2023-10-01T00:00:00Z",
+        "UpdatedAt": null,
+        "IsDeleted": false,
+        "Rating": 5,
+        "Comment": "Amazing gaming console!",
+        "ProductId": 22
+    },
+    {
+        "CreatedAt": "2023-10-01T00:00:00Z",
+        "UpdatedAt": null,
+        "IsDeleted": false,
+        "Rating": 4,
+        "Comment": "Great sound quality, but a bit heavy.",
+        "ProductId": 23
+    }
+]

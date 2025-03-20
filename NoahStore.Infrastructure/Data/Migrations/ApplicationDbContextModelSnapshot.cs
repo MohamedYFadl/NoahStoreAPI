@@ -50,56 +50,6 @@ namespace NoahStore.Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Electronic gadgets and devices.",
-                            IsDeleted = false,
-                            Name = "Electronics"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Apparel and fashion items.",
-                            IsDeleted = false,
-                            Name = "Clothing"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Household items and kitchen appliances.",
-                            IsDeleted = false,
-                            Name = "Home & Kitchen"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Literature and educational materials.",
-                            IsDeleted = false,
-                            Name = "Books"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Sporting goods and outdoor equipment.",
-                            IsDeleted = false,
-                            Name = "Sports & Outdoors"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Toys and games for all ages.",
-                            IsDeleted = false,
-                            Name = "Toys & Games"
-                        });
                 });
 
             modelBuilder.Entity("NoahStore.Core.Entities.Product", b =>
