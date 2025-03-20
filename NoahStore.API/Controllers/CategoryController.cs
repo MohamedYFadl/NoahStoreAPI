@@ -24,7 +24,7 @@ namespace NoahStore.API.Controllers
         public async Task<ActionResult<Category>> GetCategoryById(int id)
         {
             var category = await _unitOfWork.Repository<Category>().GetByIdAsync(id);
-            if(category == null) return BadRequest(new ApiResponse(404,$"No Category was founded with this {id} "));
+            if(category == null) return BadRequest(new ApiResponse(404,$"No Category was founded with id = {id} "));
             return Ok(category);
         }
     }
