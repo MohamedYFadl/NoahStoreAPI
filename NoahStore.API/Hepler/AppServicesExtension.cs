@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc;
 using NoahStore.Core.Interfaces;
 using NoahStore.Infrastructure.Data.DbContexts;
 using NoahStore.Infrastructure.Repositories;
+using NoahStore.API.Errors;
 
 namespace NoahStore.Infrastructure
 {
@@ -15,6 +15,20 @@ namespace NoahStore.Infrastructure
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            });
+            services.Configure<ApiBehaviorOptions>(op =>
+            {
+                op.InvalidModelStateResponseFactory = (context) =>
+                {
+                    var errors = context.ModelState.Where(e => e.Value.Errors.Count() > 0)
+                     .SelectMany(p => p.Value.Errors).Select(e => e.ErrorMessage).ToList();
+
+                    var response = new APIValidationErrorResponse()
+                    {
+                        Errors = errors
+                    };
+                    return new BadRequestObjectResult(response);
+                };
             });
 
             return services;

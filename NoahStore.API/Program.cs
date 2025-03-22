@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NoahStore.API.Errors;
+using NoahStore.API.Middleware;
 using NoahStore.Infrastructure;
 using NoahStore.Infrastructure.Data.Config;
 using NoahStore.Infrastructure.Data.DbContexts;
@@ -6,7 +9,6 @@ using NoahStore.Infrastructure.Data.DbContexts;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -14,6 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddServices(builder.Configuration);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();
+app.UseMiddleware<ExceptionMiddleware>();
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
 
@@ -37,6 +40,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
 app.UseHttpsRedirection();
 

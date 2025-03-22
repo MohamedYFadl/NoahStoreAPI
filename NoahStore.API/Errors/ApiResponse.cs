@@ -15,7 +15,7 @@
         {
             return statusCode switch
             {
-                200 => "The request was successful.",
+                200 => "Done",
                 400 => "Bad request",
                 401 => "Authentication failed.",
                 403 => "The client does not have permission to access the requested resource.",
@@ -26,7 +26,7 @@
                 500 => "An unexpected error occurred on the server.",
                 501 => "The server does not support the functionality required to fulfill the request.",
                 503 => "The server is temporarily unable to handle the request.",
-                _ => "Unknown Status"
+                _ => "Unknown"
             };
         }
     }
