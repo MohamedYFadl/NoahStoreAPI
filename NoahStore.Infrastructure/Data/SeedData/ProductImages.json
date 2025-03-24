@@ -7,7 +7,7 @@
         "AltText": "Smartphone Image",
         "Caption": "Front view of the smartphone",
         "FileSize": 1024,
-        "ProductId": 1
+        "ProductId": 2
     },
     {
         "CreatedAt": "2023-10-01T00:00:00Z",
@@ -17,7 +17,7 @@
         "AltText": "Laptop Image",
         "Caption": "Front view of the laptop",
         "FileSize": 2048,
-        "ProductId": 2
+        "ProductId": 3
     },
     {
         "CreatedAt": "2023-10-01T00:00:00Z",
@@ -27,7 +27,7 @@
         "AltText": "T-Shirt Image",
         "Caption": "Front view of the t-shirt",
         "FileSize": 512,
-        "ProductId": 3
+        "ProductId": 4
     },
     {
         "CreatedAt": "2023-10-01T00:00:00Z",
@@ -37,7 +37,7 @@
         "AltText": "Gaming Console Image",
         "Caption": "Front view of the gaming console",
         "FileSize": 1024,
-        "ProductId": 21
+        "ProductId": 22
     },
     {
         "CreatedAt": "2023-10-01T00:00:00Z",
@@ -47,6 +47,6 @@
         "AltText": "Headphones Image",
         "Caption": "Over-ear noise-cancelling headphones",
         "FileSize": 2048,
-        "ProductId": 22
+        "ProductId": 23
     }
 ]

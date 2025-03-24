@@ -12,6 +12,7 @@ namespace NoahStore.Core.Entities
         public long FileSize { get; set; }
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]
+        [NotMapped]
         public Product Product { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using NoahStore.Core.Interfaces;
 using System.Linq.Expressions;
 
-namespace NoahStore.Infrastructure.Repositories
+namespace NoahStore.Core.Specifications
 {
     public class BaseSpecification<T> : ISpecification<T> where T : class
     {
@@ -15,5 +15,7 @@ namespace NoahStore.Infrastructure.Repositories
         {
             Criteria = includeExpression;
         }
+
+        
     }
 }
