@@ -13,6 +13,13 @@ namespace NoahStore.Infrastructure.Repositories
                 query = query.Where(specs.Criteria);
             }
 
+            if(specs.OrderBy != null) 
+                query = query.OrderBy(specs.OrderBy);
+
+            else if(specs.OrderByDesc != null)
+                query = query.OrderByDescending(specs.OrderByDesc);
+
+
             query = specs.Includes.Aggregate(query, (currentQuery, includeExpression) => currentQuery.Include(includeExpression));
             return query;
         }
