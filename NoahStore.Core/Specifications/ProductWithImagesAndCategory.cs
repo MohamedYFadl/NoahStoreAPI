@@ -4,7 +4,8 @@ namespace NoahStore.Core.Specifications
 {
     public class ProductWithImagesAndCategory: BaseSpecification<Product>
     {
-        public ProductWithImagesAndCategory(string? sort):base()
+        public ProductWithImagesAndCategory(string? sort,int? categoryId) 
+            :base(p=>(!categoryId.HasValue || p.CategoryId ==categoryId.Value))
         {
             AddIncludes();
             if (!string.IsNullOrEmpty(sort))

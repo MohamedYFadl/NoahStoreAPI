@@ -17,9 +17,9 @@ namespace NoahStore.API.Controllers
         {
         }
         [HttpGet("get-all")]
-        public async Task<ActionResult<IReadOnlyList<Product>>> GetAll(string? sort)
+        public async Task<ActionResult<IReadOnlyList<Product>>> GetAll(string? sort,int? categoryId)
         {
-            var specs = new ProductWithImagesAndCategory(sort);
+            var specs = new ProductWithImagesAndCategory(sort, categoryId);
             var products = await _unitOfWork.Repository<Product>().GetAllAsync(specs);
             if (products == null) return BadRequest(new ApiResponse(400));
             return Ok(products);
