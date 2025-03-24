@@ -10,7 +10,8 @@ namespace NoahStore.API.Controllers
 
     public class CategoryController : BaseController
     {
-        public CategoryController(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
+        public CategoryController(IUnitOfWork unitOfWork, IMapper mapper)
+            : base(unitOfWork, mapper)
         {
         }
         [HttpGet("get-all")]
