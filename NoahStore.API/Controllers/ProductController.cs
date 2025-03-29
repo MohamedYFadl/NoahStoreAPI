@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NoahStore.API.DTOs;
 using NoahStore.API.Errors;
 using NoahStore.Core.Entities;
 using NoahStore.Core.Interfaces;
@@ -17,20 +18,23 @@ namespace NoahStore.API.Controllers
         {
         }
         [HttpGet("get-all")]
-        public async Task<ActionResult<IReadOnlyList<Product>>> GetAll(string? sort,int? categoryId)
+        public async Task<ActionResult<IReadOnlyList<ProductDTO>>> GetAll(string? sort,int? categoryId)
         {
             var specs = new ProductWithImagesAndCategory(sort, categoryId);
             var products = await _unitOfWork.Repository<Product>().GetAllAsync(specs);
             if (products == null) return BadRequest(new ApiResponse(400));
-            return Ok(products);
+            var mappedProducts = mapper.Map<IReadOnlyList<ProductDTO>>(products);
+            return Ok(mappedProducts);
         }
         [HttpGet("get-by-id-{id}")]
-        public async Task<ActionResult<Product>> GetProductById(int id)
+        public async Task<ActionResult<ProductDTO>> GetProductById(int id)
         {
             var specs = new ProductWithImagesAndCategory(id);
             var product = await _unitOfWork.Repository<Product>().GetByIdAsync(specs);
             if(product == null) return NotFound(new ApiResponse(404,$"No product was founded !"));
-            return Ok(product);
+            var mappedProduct = mapper.Map<ProductDTO>(product);
+
+            return Ok(mappedProduct);
         }
     }
 }
