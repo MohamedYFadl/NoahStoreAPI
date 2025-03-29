@@ -19,6 +19,8 @@ namespace NoahStore.Infrastructure.Repositories
             else if(specs.OrderByDesc != null)
                 query = query.OrderByDescending(specs.OrderByDesc);
 
+            if (specs.IsPagainationEnable)
+                query = query.Skip(specs.Skip).Take(specs.Take);
 
             query = specs.Includes.Aggregate(query, (currentQuery, includeExpression) => currentQuery.Include(includeExpression));
             return query;

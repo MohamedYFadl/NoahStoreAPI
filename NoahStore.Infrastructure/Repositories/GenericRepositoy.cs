@@ -24,6 +24,9 @@ namespace NoahStore.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
+        public  int Count()
+          =>  _db.Set<T>().Count();
+
         public async Task<IReadOnlyList<T>> GetAllAsync()
             => await _db.Set<T>().AsNoTracking().ToListAsync();
 

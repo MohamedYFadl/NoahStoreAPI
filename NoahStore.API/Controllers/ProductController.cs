@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NoahStore.API.DTOs;
 using NoahStore.API.Errors;
+using NoahStore.API.Hepler;
 using NoahStore.Core.Entities;
 using NoahStore.Core.Interfaces;
 using NoahStore.Core.Specifications;
@@ -18,13 +19,14 @@ namespace NoahStore.API.Controllers
         {
         }
         [HttpGet("get-all")]
-        public async Task<ActionResult<IReadOnlyList<ProductDTO>>> GetAll(string? sort,int? categoryId)
+        public async Task<ActionResult<IReadOnlyList<ProductDTO>>> GetAll([FromQuery] ProductSpecsParams productSpecs)
         {
-            var specs = new ProductWithImagesAndCategory(sort, categoryId);
+            var specs = new ProductWithImagesAndCategory(productSpecs);
             var products = await _unitOfWork.Repository<Product>().GetAllAsync(specs);
             if (products == null) return BadRequest(new ApiResponse(400));
             var mappedProducts = mapper.Map<IReadOnlyList<ProductDTO>>(products);
-            return Ok(mappedProducts);
+            var productsCount = _unitOfWork.Repository<Product>().Count();
+            return Ok(new Pagaination<ProductDTO>(productSpecs.PageIndex,productSpecs.PageSize, productsCount, mappedProducts));
         }
         [HttpGet("get-by-id-{id}")]
         public async Task<ActionResult<ProductDTO>> GetProductById(int id)

@@ -12,5 +12,6 @@ namespace NoahStore.Core.Interfaces
         Task RemoveAsync(int id);
         Task RemoveRangeAsync(IEnumerable<T> entities);
         Task UpdateAsync(T entity);
+        int Count();
     }
 }
