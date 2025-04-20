@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NoahStore.Core\NoahStore.Core.csproj" />
+  </ItemGroup>
+
 </Project>
