@@ -18,6 +18,7 @@ namespace NoahStore.Infrastructure
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositoy<>));
             services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
             services.AddScoped(typeof(IProductService), typeof(ProductService)); 
+            services.AddScoped(typeof(IBasketRepository), typeof(BasketRepository)); 
             #endregion
             #region DbContext
             services.AddDbContext<ApplicationDbContext>(options =>
