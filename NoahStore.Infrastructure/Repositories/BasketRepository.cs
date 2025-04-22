@@ -16,26 +16,25 @@ namespace NoahStore.Infrastructure.Repositories
         {
             return _database.KeyDeleteAsync( id);
         }
-
         public async Task<CustomerBasket> GetBasketAsync(string id)
         {
             var result = await _database.StringGetAsync( id);
-            if (!string.IsNullOrEmpty(result))
-            {
-                return JsonSerializer.Deserialize<CustomerBasket>(result);
-            }
-            return null;
+            return string.IsNullOrEmpty(result) ? null : JsonSerializer.Deserialize<CustomerBasket>(result);
         }
 
         public async Task<CustomerBasket> UpdateBasketAsync(CustomerBasket basket)
         {
-            basket.UpdatedAt = DateTime.UtcNow;
+            if (basket.Id is null)
+            {// new basket
+                basket.Id= Guid.NewGuid().ToString();
+            }
             var _basket = await _database.StringSetAsync(basket.Id, JsonSerializer.Serialize(basket), TimeSpan.FromDays(10));
-            if(_basket)
+            if (_basket)
             {
                 return await GetBasketAsync(basket.Id);
             }
             return null;
+
         }
     }
 }

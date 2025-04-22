@@ -7,15 +7,14 @@ using NoahStore.Core.Interfaces;
 
 namespace NoahStore.API.Controllers
 {
-
-    public class BasketController : BaseController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BasketController : ControllerBase
     {
         private readonly IBasketRepository _basketRepository;
 
         public BasketController(
-            IUnitOfWork unitOfWork,
-            IMapper mapper,
-            IBasketRepository basketRepository) : base(unitOfWork, mapper)
+            IBasketRepository basketRepository) 
         {
             _basketRepository = basketRepository;
         }
