@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using NoahStore.Core.Entities;
+using NoahStore.Core.Entities.Identity;
 using System.Reflection;
 
 
 namespace NoahStore.Infrastructure.Data.DbContexts
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -16,6 +18,7 @@ namespace NoahStore.Infrastructure.Data.DbContexts
         public virtual DbSet<ProductImage> ProductImages { get; set; }
 
         public virtual DbSet<ProductReview> ProductReviews   { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
