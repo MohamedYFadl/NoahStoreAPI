@@ -1,4 +1,5 @@
 ﻿using NoahStore.Core.Entities;
+using NoahStore.Core.Sharing;
 
 namespace NoahStore.Core.Specifications
 {

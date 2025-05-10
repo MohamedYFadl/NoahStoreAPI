@@ -7,7 +7,7 @@ using NoahStore.API.Hepler;
 using NoahStore.Core.Entities;
 using NoahStore.Core.Interfaces;
 using NoahStore.Core.Services;
-using NoahStore.Core.Specifications;
+using NoahStore.Core.Sharing;
 using NoahStore.Infrastructure.Repositories;
 
 namespace NoahStore.API.Controllers

@@ -1,6 +1,7 @@
 ﻿using NoahStore.Core.Entities;
 using NoahStore.Core.Interfaces;
 using NoahStore.Core.Services;
+using NoahStore.Core.Sharing;
 using NoahStore.Core.Specifications;
 
 namespace NoahStore.Service

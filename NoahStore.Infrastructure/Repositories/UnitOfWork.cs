@@ -1,4 +1,7 @@
-﻿using NoahStore.Core.Interfaces;
+﻿using Microsoft.AspNetCore.Identity;
+using NoahStore.Core.Entities.Identity;
+using NoahStore.Core.Interfaces;
+using NoahStore.Core.Services;
 using NoahStore.Infrastructure.Data.DbContexts;
 using System.Collections;
 
@@ -8,7 +11,6 @@ namespace NoahStore.Infrastructure.Repositories
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly Hashtable _repositories;
-
         public UnitOfWork(ApplicationDbContext dbContext)
         {
            _dbContext = dbContext;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NoahStore.Core.Specifications
+namespace NoahStore.Core.Sharing
 {
     public class ProductSpecsParams
     {
@@ -14,7 +14,7 @@ namespace NoahStore.Core.Specifications
         public int Count { get; set; }
         private const int MaxPageSize = 10;
         private int pageSize = 5;
-        
+
 
         public int PageSize
         {

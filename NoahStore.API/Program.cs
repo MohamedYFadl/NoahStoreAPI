@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using NoahStore.API.Hepler;
 using NoahStore.API.Middleware;
+using NoahStore.Core.Dto;
 using NoahStore.Infrastructure;
 using NoahStore.Infrastructure.Data.Config;
 using NoahStore.Infrastructure.Data.DbContexts;
@@ -11,29 +13,15 @@ builder.Services.AddMemoryCache();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerDocumentation();
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddServices(builder.Configuration);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();
-using var scope = app.Services.CreateScope();
-var services = scope.ServiceProvider;
-
-var loggerFactory = services.GetRequiredService<ILoggerFactory>();
-var logger = loggerFactory.CreateLogger<ApplicationDbContext>();
-try
-{
-    var _dbContext = services.GetRequiredService<ApplicationDbContext>();
-    await _dbContext.Database.MigrateAsync();
-    await ApplicationDbContextSeed.SeedAsync(_dbContext);
-
-}
-catch (Exception ex)
-{
-    logger.LogError(ex, "An Error has been occured during apply migration");
-
-}
+await SeedUserRoles.SeedUserAndRolesAsync(app);
+await ApplySeeding.ApplySeedingAsync(app);
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -43,7 +31,7 @@ if (app.Environment.IsDevelopment())
 app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
