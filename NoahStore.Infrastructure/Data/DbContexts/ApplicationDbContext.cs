@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using NoahStore.Core.Entities;
 using NoahStore.Core.Entities.Identity;
+using NoahStore.Core.Entities.Order;
 using System.Reflection;
 
 
@@ -19,6 +20,10 @@ namespace NoahStore.Infrastructure.Data.DbContexts
 
         public virtual DbSet<ProductReview> ProductReviews   { get; set; }
         public virtual DbSet<Address> Addresses { get; set; }
+        public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<DeliveryMethod> DeliveryMethods { get; set; }
+
+        public virtual DbSet<OrderItems> OrderItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
