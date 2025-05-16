@@ -19,9 +19,9 @@ namespace NoahStore.Infrastructure.Repositories
             _db = db;
         }
 
-        public Task AddAsync(T entity)
+        public async Task AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _db.Set<T>().AddAsync(entity);
         }
 
         public async Task<int> GetCountAsync(ISpecification<T> specs)

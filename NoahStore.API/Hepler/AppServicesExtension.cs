@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using NoahStore.API.Hepler;
+using NoahStore.API.Mapping;
 
 namespace NoahStore.Infrastructure
 {
@@ -28,7 +29,7 @@ namespace NoahStore.Infrastructure
             services.AddScoped(typeof(IMailService), typeof(MailService));
             services.AddScoped(typeof(ITokenService), typeof(TokenService));
             services.AddScoped(typeof(IAuthRepository), typeof(AuthRepository));
-
+            services.AddScoped(typeof(IOrderService), typeof(OrderService));
             #endregion
             #region DbContext
             services.AddDbContext<ApplicationDbContext>(options =>
