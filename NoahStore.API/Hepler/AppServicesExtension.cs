@@ -30,7 +30,9 @@ namespace NoahStore.Infrastructure
             services.AddScoped(typeof(ITokenService), typeof(TokenService));
             services.AddScoped(typeof(IAuthRepository), typeof(AuthRepository));
             services.AddScoped(typeof(IOrderService), typeof(OrderService));
+            services.AddScoped(typeof(IPaymentService), typeof(PaymentService));
             #endregion
+
             #region DbContext
             services.AddDbContext<ApplicationDbContext>(options =>
                 {
@@ -92,6 +94,7 @@ namespace NoahStore.Infrastructure
                     };
                 });
             #endregion
+
             #region Apply Redis Cashing
             services.AddSingleton<IConnectionMultiplexer>(options =>
             {
