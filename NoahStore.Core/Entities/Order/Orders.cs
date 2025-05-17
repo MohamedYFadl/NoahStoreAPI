@@ -6,15 +6,16 @@
         {
             
         }
-        public Orders(string buyerEmail, decimal subTotal, ShippingAddress shippingAddress, DeliveryMethod deliveryMethod, IReadOnlyList<OrderItems> orderItems)
+        public Orders(string buyerEmail, decimal subTotal, ShippingAddress shippingAddress, DeliveryMethod deliveryMethod, IReadOnlyList<OrderItems> orderItems, string? paymentIntentId)
         {
             BuyerEmail = buyerEmail;
             SubTotal = subTotal;
             this.shippingAddress = shippingAddress;
             DeliveryMethod = deliveryMethod;
             OrderItems = orderItems;
+            PaymentIntentId = paymentIntentId;
         }
-
+        public string? PaymentIntentId { get; set; }
         public string BuyerEmail { get; set; }
         public decimal SubTotal { get; set; }
         public ShippingAddress shippingAddress { get; set; }

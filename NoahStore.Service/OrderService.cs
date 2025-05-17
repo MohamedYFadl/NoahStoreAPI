@@ -12,15 +12,18 @@ namespace NoahStore.Service
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IBasketRepository _basketRepository;
+        private readonly IPaymentService _paymentService;
         private readonly IMapper _mapper;
 
         public OrderService(
             IUnitOfWork unitOfWork,
             IBasketRepository basketRepository,
+            IPaymentService paymentService,
             IMapper mapper )
         {
             _unitOfWork = unitOfWork;
             _basketRepository = basketRepository;
+            _paymentService = paymentService;
             _mapper = mapper;
         }
 
@@ -68,18 +71,31 @@ namespace NoahStore.Service
 
             #endregion
 
-            #region 5. Create Order
-            var order = new Orders(BuyerEmail, subtotal, shippAddress, deliveryMethod, orderItems);
+            #region 5.Check if the order existed or not 
+
+            var orderRepo =  _unitOfWork.Repository<Orders>();
+            var orderIntentSpecs = new OrderWithPaymentIntentSpecs(basket.PaymentIntentId);
+            var exisitingOrder = await orderRepo.GetByIdAsync(orderIntentSpecs);
+            if(exisitingOrder != null)
+            {
+                await orderRepo.RemoveAsync(exisitingOrder.Id);
+                await _paymentService.CreateOrUpdatePaymentIntent(basket.Id, deliveryMethod.Id);
+            }
+            #endregion
+
+
+            #region 6. Create Order
+            var order = new Orders(BuyerEmail, subtotal, shippAddress, deliveryMethod, orderItems,basket.PaymentIntentId);
 
             #endregion
 
-            #region 6. Add the order to db
-            await _unitOfWork.Repository<Orders>().AddAsync(order);
+            #region 7. Add the order to db
+            await orderRepo.AddAsync(order);
             _unitOfWork.Save();
 
             #endregion
 
-            #region 7. Delete the basket from Redis after creating the order
+            #region 8. Delete the basket from Redis after creating the order
             await _basketRepository.DeleteBasketAsync(orderDto.BasketId);
 
             #endregion

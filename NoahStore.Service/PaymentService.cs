@@ -50,7 +50,7 @@ namespace NoahStore.Service
 
             #region 4. Add Shipping Cost
             var shippingPrice = 0m;
-            if (deliveryMethodId.HasValue)
+            if (deliveryMethodId.HasValue )
             {
                 var delivery =await _unitOfWork.Repository<DeliveryMethod>().GetByIdAsync(deliveryMethodId.Value);
                 if(delivery is not null)
