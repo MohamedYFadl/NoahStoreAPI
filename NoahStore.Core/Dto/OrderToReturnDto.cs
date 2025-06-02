@@ -2,7 +2,7 @@
 
 namespace NoahStore.Core.Dto
 {
-    public class OrderToReturnDto
+    public sealed record OrderToReturnDto
     {
         public int Id { get; set; }
         public decimal SubTotal { get; set; }

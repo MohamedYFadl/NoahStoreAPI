@@ -2,7 +2,7 @@
 
 namespace NoahStore.Core.Dto
 {
-    public class LoginDto
+    public sealed record LoginDto
     {
         [Required]
         [EmailAddress(ErrorMessage = "Please enter a valid email")]

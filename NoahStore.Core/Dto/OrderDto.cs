@@ -1,6 +1,6 @@
 ﻿namespace NoahStore.Core.Dto
 {
-    public class OrderDto
+    public sealed record OrderDto
     {
         public int DeliveryMethodId { get; set; }
         public string BasketId { get; set; }
