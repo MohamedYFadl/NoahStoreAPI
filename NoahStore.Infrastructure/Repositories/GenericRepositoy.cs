@@ -55,6 +55,7 @@ namespace NoahStore.Infrastructure.Repositories
         public async Task UpdateAsync(T entity)
         {
             _db.Entry(entity).State = EntityState.Modified;
+            //_db.Set<T>().Update(entity);
         }
 
         private IQueryable<T> ApplySpecs(ISpecification<T> specs)

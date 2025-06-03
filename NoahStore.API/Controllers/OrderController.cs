@@ -60,7 +60,7 @@ namespace NoahStore.API.Controllers
         [HttpPost("Cancel-order-{orderId}")]
         public async Task<ActionResult<bool>> CancelOrder(int orderId)
         {
-            var email = User.FindFirstValue(ClaimTypes.Email);
+            var email = User.FindFirstValue(ClaimTypes.Email); 
 
             var result =await _orderService.CancelOrderAsync(orderId, email);
 

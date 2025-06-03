@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NoahStore.API.DTOs;
@@ -35,7 +36,7 @@ namespace NoahStore.API.Controllers
             int productsCount = await _productService.GetCountAsync(productSpecs);
             return Ok(new Pagaination<ProductDTO>(productSpecs.PageIndex,productSpecs.PageSize, productsCount, mappedProducts));
         }
-        [HttpGet("get-by-id-{id}")]
+        [HttpGet("get-by-id/{id}")]
         public async Task<ActionResult<ProductDTO>> GetProductById(int id)
         {
             var product = await _productService.GetProductByIdAsync(id);
@@ -43,6 +44,18 @@ namespace NoahStore.API.Controllers
             var mappedProduct = mapper.Map<ProductDTO>(product);
 
             return Ok(mappedProduct);
+        }
+
+        [HttpPost("delete-by-id/{productId}")]
+        [Authorize(Roles = "Admin")]
+
+        public async Task<ActionResult> DeleteProductById(int productId)
+        {
+           var result = await _productService.DeleteProductAsync(productId);
+
+            if (result == false)
+                return BadRequest(new ApiResponse(400,"Error occur while deleting"));
+            return Ok(new ApiResponse(200, "Item has been deleted successfully"));
         }
     }
 }

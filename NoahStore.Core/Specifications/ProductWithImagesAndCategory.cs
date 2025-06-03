@@ -9,6 +9,7 @@ namespace NoahStore.Core.Specifications
             :base(p=> (
             (!productSpecs.CategoryId.HasValue || p.CategoryId == productSpecs.CategoryId.Value)) &&
            (string.IsNullOrEmpty(productSpecs.Search) || p.Name.ToLower().Contains(productSpecs.Search))
+            && p.IsDeleted == false && p.StockQuantity >0
             )
         {
             AddIncludes();

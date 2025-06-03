@@ -8,5 +8,7 @@ namespace NoahStore.Core.Services
         Task<IReadOnlyList<Product>> GetAllProductsAsync(ProductSpecsParams specsParams);
         Task<Product> GetProductByIdAsync(int productId);
         Task<int> GetCountAsync(ProductSpecsParams specsParams);
+
+        Task<bool> DeleteProductAsync(int productId);
     }
 }

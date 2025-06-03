@@ -17,15 +17,15 @@ namespace NoahStore.API.Controllers
         [HttpGet("get-all")]
         public async Task<ActionResult<IReadOnlyList<Category>>> GetAll()
         {
-            var Categories = await _unitOfWork.Repository<Category>().GetAllAsync();
-            if (Categories == null) return BadRequest(new ApiResponse(400));
+            IReadOnlyList<Category> Categories = await _unitOfWork.Repository<Category>().GetAllAsync();
+            if (Categories == null) return NotFound(new ApiResponse(404,"No Categories has been founded!"));
             return Ok(Categories);
         }
         [HttpGet("get-by-id-{id}")]
         public async Task<ActionResult<Category>> GetCategoryById(int id)
         {
-            var category = await _unitOfWork.Repository<Category>().GetByIdAsync(id);
-            if(category == null) return BadRequest(new ApiResponse(404,$"No Category was founded with id = {id} "));
+            Category category = await _unitOfWork.Repository<Category>().GetByIdAsync(id);
+            if(category == null) return NotFound(new ApiResponse(404,$"No Category was founded with id = {id} "));
             return Ok(category);
         }
     }

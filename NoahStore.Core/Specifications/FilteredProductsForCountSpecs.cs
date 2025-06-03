@@ -12,7 +12,8 @@ namespace NoahStore.Core.Specifications
     {
         public FilteredProductsForCountSpecs(ProductSpecsParams specsParams) : base(p => (
             (!specsParams.CategoryId.HasValue || p.CategoryId == specsParams.CategoryId.Value)) &&
-           (string.IsNullOrEmpty(specsParams.Search) || p.Name.ToLower().Contains(specsParams.Search))
+           (string.IsNullOrEmpty(specsParams.Search) || p.Name.ToLower().Contains(specsParams.Search) &&
+            p.IsDeleted == false && p.StockQuantity > 0)
             )
         {
             
