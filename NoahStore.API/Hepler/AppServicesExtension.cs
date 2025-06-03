@@ -14,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using NoahStore.API.Hepler;
 using NoahStore.API.Mapping;
+using Microsoft.Extensions.FileProviders;
 
 namespace NoahStore.Infrastructure
 {
@@ -24,13 +25,17 @@ namespace NoahStore.Infrastructure
             #region Register services
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositoy<>));
             services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
+            services.AddScoped(typeof(IBasketRepository), typeof(BasketRepository));
+            services.AddScoped(typeof(IProductRepository), typeof(ProductRepository));
+            services.AddScoped(typeof(IAuthRepository), typeof(AuthRepository));
             services.AddScoped(typeof(IProductService), typeof(ProductService)); 
-            services.AddScoped(typeof(IBasketRepository), typeof(BasketRepository)); 
             services.AddScoped(typeof(IMailService), typeof(MailService));
             services.AddScoped(typeof(ITokenService), typeof(TokenService));
-            services.AddScoped(typeof(IAuthRepository), typeof(AuthRepository));
             services.AddScoped(typeof(IOrderService), typeof(OrderService));
             services.AddScoped(typeof(IPaymentService), typeof(PaymentService));
+            services.AddSingleton(typeof(IImageService), typeof(ImageService));
+            services.AddSingleton<IFileProvider>
+                (new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
             #endregion
 
             #region DbContext

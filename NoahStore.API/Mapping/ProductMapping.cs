@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using NoahStore.API.DTOs;
+using NoahStore.Core.Dto;
 using NoahStore.Core.Entities;
 
 namespace NoahStore.API.Mapping
@@ -14,6 +15,10 @@ namespace NoahStore.API.Mapping
                 op => op.MapFrom(src => src.Category.Name))
                 .ForMember(p => p.Images,
                 op => op.MapFrom(src => src.Images))
+                .ReverseMap();
+
+            CreateMap<AddProductDTO,Product >()
+                .ForMember(m=>m.Images,op=>op.Ignore())
                 .ReverseMap();
         }
     }

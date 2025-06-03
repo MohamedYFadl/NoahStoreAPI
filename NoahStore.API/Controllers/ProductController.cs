@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using NoahStore.API.DTOs;
 using NoahStore.API.Errors;
 using NoahStore.API.Hepler;
+using NoahStore.Core.Dto;
 using NoahStore.Core.Entities;
 using NoahStore.Core.Interfaces;
 using NoahStore.Core.Services;
@@ -17,14 +18,17 @@ namespace NoahStore.API.Controllers
     public class ProductController : BaseController
     {
         private readonly IProductService _productService;
+        private readonly IProductRepository _productRepository;
 
         public ProductController(
             IUnitOfWork unitOfWork,
             IMapper mapper,
-            IProductService productService)
+            IProductService productService,
+            IProductRepository productRepository)
             : base(unitOfWork, mapper)
         {
             _productService = productService;
+            _productRepository = productRepository;
         }
         [HttpGet("get-all")]
         public async Task<ActionResult<IReadOnlyList<ProductDTO>>> GetAll([FromQuery] ProductSpecsParams productSpecs)
@@ -56,6 +60,21 @@ namespace NoahStore.API.Controllers
             if (result == false)
                 return BadRequest(new ApiResponse(400,"Error occur while deleting"));
             return Ok(new ApiResponse(200, "Item has been deleted successfully"));
+        }
+
+        [HttpPost("add-product")]
+        //[Authorize(Roles = "Admin")]
+        public async Task<ActionResult> Add(AddProductDTO productDTO)
+        {
+            try
+            {
+                await _productRepository.AddProductAsync(productDTO);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ApiResponse(400, ex.Message));
+            }
         }
     }
 }
