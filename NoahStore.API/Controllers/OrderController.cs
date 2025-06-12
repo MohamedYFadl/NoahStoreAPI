@@ -24,13 +24,13 @@ namespace NoahStore.API.Controllers
             _mapper = mapper;
         }
         [HttpPost("Create-order")]
-        public async Task<ActionResult<Orders>> CreateOrder(OrderDto orderDto)
+        public async Task<ActionResult<OrderToReturnDto>> CreateOrder(OrderDto orderDto)
         {
             var email = User.FindFirst(ClaimTypes.Email)?.Value;
 
            var order =await  _orderService.CreateOrderAsync(orderDto, email);
-
-            return Ok(order);
+            if (order == null) return BadRequest(new ApiResponse(400));
+            return Ok(_mapper.Map<OrderToReturnDto>(order));
         }
         [HttpGet("get-order-by-id-{id}")]
         public async Task<ActionResult<OrderToReturnDto>> GetOrderById(int id)

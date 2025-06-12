@@ -34,7 +34,7 @@ namespace NoahStore.Infrastructure.Repositories
 
         public void Save()
         {
-            _dbContext.SaveChanges();
+            _dbContext.SaveChangesAsync();
         }
     }
 }

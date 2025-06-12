@@ -50,7 +50,9 @@ namespace NoahStore.Service
                 foreach (var item in basket.BasketItems)
                 {
                     var product = await _unitOfWork.Repository<Product>().GetByIdAsync(item.Id);
-                    var orderItem = new OrderItems(product.Price, item.Quantity, product.Id, product.Name, item.PictureUrl);
+                    var orderItem = new OrderItems(product.Price, item.Quantity,
+                        product.Id, product.Name, item.PictureUrl);
+                    product.StockQuantity -= item.Quantity;
                     orderItems.Add(orderItem);
                 }
             }
@@ -90,6 +92,7 @@ namespace NoahStore.Service
             #endregion
 
             #region 7. Add the order to db
+            
             await orderRepo.AddAsync(order);
             _unitOfWork.Save();
 
