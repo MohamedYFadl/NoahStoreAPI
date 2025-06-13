@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using NoahStore.API.Hepler;
 using NoahStore.API.Middleware;
 using NoahStore.Core.Dto;
@@ -23,6 +24,17 @@ builder.Services.AddSwaggerDocumentation();
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddServices(builder.Configuration);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddApiVersioning(static options =>
+{
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.DefaultApiVersion = new ApiVersion(1,0);
+    options.ReportApiVersions = true;
+    options.ApiVersionReader = ApiVersionReader.Combine(new HeaderApiVersionReader("x-version"));
+}).AddApiExplorer(op =>
+{
+    op.GroupNameFormat = "'v'V";
+    op.SubstituteApiVersionInUrl = true;
+});
 var app = builder.Build();
 app.UseCors("NoahStorePolicy");
 app.UseMiddleware<ExceptionMiddleware>();

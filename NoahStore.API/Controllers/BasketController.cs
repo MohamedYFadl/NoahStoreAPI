@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Asp.Versioning;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NoahStore.API.Errors;
@@ -7,7 +8,8 @@ using NoahStore.Core.Interfaces;
 
 namespace NoahStore.API.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1.0", Deprecated = true)]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class BasketController : ControllerBase
     {
