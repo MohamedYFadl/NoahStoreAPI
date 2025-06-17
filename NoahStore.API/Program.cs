@@ -30,7 +30,8 @@ builder.Services.AddApiVersioning(static options =>
     options.DefaultApiVersion = new ApiVersion(1,0);
     options.ReportApiVersions = true;
     options.ApiVersionReader = ApiVersionReader.Combine(new HeaderApiVersionReader("x-version"));
-}).AddApiExplorer(op =>
+})
+    .AddApiExplorer(op =>
 {
     op.GroupNameFormat = "'v'V";
     op.SubstituteApiVersionInUrl = true;
