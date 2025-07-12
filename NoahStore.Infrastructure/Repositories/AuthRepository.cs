@@ -96,7 +96,7 @@ namespace NoahStore.Infrastructure.Repositories
             }
             // Send Message to Activate email
            await SendEmail(registerDto.Email, "Activate Email", "Please active you email by click on link below !");
-
+            await _userManager.AddToRoleAsync(user, "Customer");
             return  new AuthResult
             {
                 Success = true,
