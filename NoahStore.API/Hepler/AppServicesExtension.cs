@@ -12,8 +12,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using NoahStore.API.Hepler;
-using NoahStore.API.Mapping;
 using Microsoft.Extensions.FileProviders;
 
 namespace NoahStore.Infrastructure
@@ -28,7 +26,7 @@ namespace NoahStore.Infrastructure
             services.AddScoped(typeof(IBasketRepository), typeof(BasketRepository));
             services.AddScoped(typeof(IProductRepository), typeof(ProductRepository));
             services.AddScoped(typeof(IAuthRepository), typeof(AuthRepository));
-            services.AddScoped(typeof(IProductService), typeof(ProductService)); 
+            services.AddScoped(typeof(IProductService), typeof(ProductService));
             services.AddScoped(typeof(IMailService), typeof(MailService));
             services.AddScoped(typeof(ITokenService), typeof(TokenService));
             services.AddScoped(typeof(IOrderService), typeof(OrderService));

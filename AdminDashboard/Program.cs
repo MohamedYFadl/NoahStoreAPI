@@ -1,13 +1,27 @@
 using Asp.Versioning;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using NoahStore.Core.Entities.Identity;
+using NoahStore.Core.Interfaces;
+using NoahStore.Core.Services;
 using NoahStore.Infrastructure.Data.DbContexts;
+using NoahStore.Infrastructure.Repositories;
+using NoahStore.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped(typeof(IUnitOfWork),typeof(UnitOfWork));
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositoy<>));
+builder.Services.AddScoped(typeof(IProductService), typeof(ProductService));
+builder.Services.AddScoped(typeof(IProductRepository), typeof(ProductRepository));
+builder.Services.AddSingleton(typeof(IImageService), typeof(ImageService));
+builder.Services.AddSingleton<IFileProvider>
+    (new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));

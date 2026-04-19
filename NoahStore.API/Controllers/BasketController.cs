@@ -1,6 +1,4 @@
 ﻿using Asp.Versioning;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NoahStore.API.Errors;
 using NoahStore.Core.Entities;

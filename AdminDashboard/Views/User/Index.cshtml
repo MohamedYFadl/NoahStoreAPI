@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<UserViewModel>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Users List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -19,6 +19,7 @@
                 <table class="table table-hover" id="usersTable">
                 <thead>
                     <tr>
+                        <th>@Html.DisplayNameFor(u=>u.Id)</th>
                         <th>@Html.DisplayNameFor(u=>u.Name)</th>
                         <th>@Html.DisplayNameFor(u => u.UserName)</th>
                         <th>@Html.DisplayNameFor(u => u.Email)</th>
@@ -31,6 +32,8 @@
                         @foreach(var user in Model)
                         {
                             <tr>
+                                <td>@user.Id</td>
+
                                 <td>
                                     <div class="d-flex align-items-center">
                                        @user.Name

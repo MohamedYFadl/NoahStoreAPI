@@ -1,0 +1,76 @@
+﻿@using NoahStore.Core.Entities
+@using NoahStore.Core.Interfaces
+@model UpsertProductViewModel
+@{
+    ViewData["Title"] = "Create Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@inject IUnitOfWork unitOfWork
+@{
+    var categories = new SelectList(unitOfWork.Repository<Category>().GetAllAsync().Result, "Id", "Name");
+}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Create Product</h5>
+        </div>
+        <div class="card-body">
+            <form method="post" asp-action="Create">
+                <div class="row">
+                    <div class="form-group mb-3">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input type="text" class="form-control" asp-for="Name" required>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Description" class="form-label"></label>
+                        <textarea class="form-control" asp-for="Description" style="max-height:150px"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Price" class="form-label"></label>
+                            <input class="form-control" asp-for="Price" type="number" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="StockQuantity" class="form-label">Stock Quantity</label>
+                            <input class="form-control" asp-for="StockQuantity" type="number" />
+                            <span asp-validation-for="StockQuantity" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Category" class="form-label">Category</label>
+                            <select class="form-select my-2" asp-for="CategoryId" asp-items="categories">
+                                <option value="null">--Select Category--</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Images" class="col-form-label">Photos</label>
+                            <input type="file" class="form-control" accept="images/*" multiple asp-for="Images" />
+
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn btn-primary" asp-action="Create">
+                            <i class="fas fa-save me-2"></i>Save
+                        </button>
+                        <a asp-action="Index" class="btn btn-secondary me-md-2">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

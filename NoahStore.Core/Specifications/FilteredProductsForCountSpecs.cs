@@ -16,7 +16,8 @@ namespace NoahStore.Core.Specifications
             p.IsDeleted == false && p.StockQuantity > 0)
             )
         {
-            
+            Includes.Add(p => p.Category);
+            Includes.Add(p => p.Images);
         }
     }
 }

@@ -63,13 +63,13 @@ namespace NoahStore.API.Controllers
         }
 
         [HttpPost("add-product")]
-        //[Authorize(Roles = "Admin")]
-        public async Task<ActionResult> Add(AddProductDTO productDTO)
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<ProductDTO>> Add(AddProductDTO productDTO)
         {
             try
             {
-                await _productRepository.AddProductAsync(productDTO);
-                return Ok();
+                if (productDTO == null) return BadRequest(new ApiResponse(400));
+                return Ok(await _productService.AddProductAsync(productDTO));
             }
             catch (Exception ex)
             {

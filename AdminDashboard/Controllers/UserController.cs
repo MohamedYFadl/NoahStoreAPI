@@ -48,6 +48,8 @@ namespace AdminDashboard.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(UserRoleViewModel user)
         {
+
+            var roles = _roleManager.Roles.ToList();
             if(user is not null)
             {
                 if(await _userManager.FindByNameAsync(user.UserName) is not null)
@@ -86,7 +88,7 @@ namespace AdminDashboard.Controllers
                     Password = user.Password,
                     PhoneNumber= user.PhoneNumber,
                     Name = user.Name,
-                    RolesList = _roleManager.Roles
+                    RolesList = roles
                 .Select(r => new SelectListItem { Text = r.Name, Value = r.Name }).ToList()
                 }
                 );

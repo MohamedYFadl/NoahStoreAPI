@@ -29,7 +29,7 @@ namespace NoahStore.API.Controllers
         }
         [HttpGet("bad-request")]
         public ActionResult GetBadRequest()
-        {
+        {   
             return BadRequest(new ApiResponse(400));
         }
         [HttpGet("bad-request/{id}")] // we will send to it string not int (Validation Error)

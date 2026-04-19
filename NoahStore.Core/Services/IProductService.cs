@@ -1,4 +1,5 @@
-﻿using NoahStore.Core.Entities;
+﻿using NoahStore.Core.Dto;
+using NoahStore.Core.Entities;
 using NoahStore.Core.Sharing;
 
 namespace NoahStore.Core.Services
@@ -10,5 +11,7 @@ namespace NoahStore.Core.Services
         Task<int> GetCountAsync(ProductSpecsParams specsParams);
 
         Task<bool> DeleteProductAsync(int productId);
+        Task<AddProductDTO> AddProductAsync(AddProductDTO addProductDTO);
+
     }
 }

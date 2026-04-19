@@ -25,10 +25,9 @@ namespace NoahStore.API.Controllers
             _mapper = mapper;
         }
         [HttpPost("Create-order")]
-        public async Task<ActionResult<OrderToReturnDto>> CreateOrder(OrderDto orderDto)
+        public async Task<ActionResult<OrderToReturnDto>> CreateOrder([FromBody]OrderDto orderDto)
         {
             var email = User.FindFirst(ClaimTypes.Email)?.Value;
-
            var order =await  _orderService.CreateOrderAsync(orderDto, email);
             if (order == null) return BadRequest(new ApiResponse(400));
             return Ok(_mapper.Map<OrderToReturnDto>(order));

@@ -1,11 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 using NoahStore.Core.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NoahStore.Service
 {
@@ -27,10 +22,10 @@ namespace NoahStore.Service
             }
 
             foreach (IFormFile item in files)
-            {
+            { 
                 if(item.Length > 0)
                 {
-                    var ImageName = item.FileName;
+                    var ImageName = Guid.NewGuid().ToString();
                     var ImageSrc = $"/Images/{productName}/{ImageName}";
                     var  root = Path.Combine(ImageDirectory, ImageName);
                     using(FileStream stream = new FileStream(root, FileMode.Create))
@@ -39,6 +34,8 @@ namespace NoahStore.Service
                     }
                     SaveImages.Add(ImageSrc);
                 }
+                
+                
             }
             return SaveImages;
         }

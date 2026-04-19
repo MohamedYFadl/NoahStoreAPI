@@ -6,7 +6,7 @@ namespace NoahStore.Core.Interfaces
     public interface IProductRepository
     {
      
-        Task<bool> AddProductAsync(AddProductDTO productDTO);
-        public string GenerateSKU(AddProductDTO productDTO);
+        Task<Product> AddProductAsync(Product product);
+        public string GenerateSKU(Product productDTO);
     }
 }

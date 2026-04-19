@@ -23,13 +23,11 @@ namespace NoahStore.Infrastructure.Repositories
         {
             await _db.Set<T>().AddAsync(entity);
         }
-
+        
         public async Task<int> GetCountAsync(ISpecification<T> specs)
         {
             return await ApplySpecs(specs).CountAsync();
         }
-        
-
         public async Task<IReadOnlyList<T>> GetAllAsync()
             => await _db.Set<T>().AsNoTracking().ToListAsync();
 
@@ -62,5 +60,9 @@ namespace NoahStore.Infrastructure.Repositories
         {
             return SpecificationEvaluator<T>.GetQuery(_db.Set<T>(), specs);
         }
+
+        public Task AddRangeAsync(IEnumerable<T> entities)
+        => _db.Set<T>().AddRangeAsync(entities);
+        
     }
 }

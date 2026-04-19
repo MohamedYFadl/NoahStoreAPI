@@ -8,7 +8,10 @@ namespace NoahStore.Core.Specifications
         public ProductWithImagesAndCategory(ProductSpecsParams productSpecs) 
             :base(p=> (
             (!productSpecs.CategoryId.HasValue || p.CategoryId == productSpecs.CategoryId.Value)) &&
-           (string.IsNullOrEmpty(productSpecs.Search) || p.Name.ToLower().Contains(productSpecs.Search))
+           (string.IsNullOrEmpty(productSpecs.Search)
+            || p.Name.Trim().ToLower().Contains(productSpecs.Search.Trim().ToLower())
+                || p.SKU.Trim().ToUpper().Contains(productSpecs.Search.Trim().ToUpper())
+            )
             && p.IsDeleted == false && p.StockQuantity >0
             )
         {
@@ -25,6 +28,18 @@ namespace NoahStore.Core.Specifications
                         break;
                     case "name":
                         AddOrderBy(P => P.Name);
+                        break;
+                    case "stockAsc":
+                        AddOrderBy(p => p.StockQuantity);
+                        break;
+                    case "stockDesc":
+                        AddOrderByDesc(p => p.StockQuantity);
+                        break;
+                    case "dateAsc":
+                        AddOrderBy(p=>p.CreatedAt);
+                        break;
+                    case "dateDesc":
+                        AddOrderByDesc(p => p.CreatedAt);
                         break;
                     default:
                         AddOrderBy(p=>p.Name);

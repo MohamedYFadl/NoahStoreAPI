@@ -9,6 +9,7 @@ namespace NoahStore.Core.Interfaces
         Task<IReadOnlyList<T>> GetAllAsync();
         Task<IReadOnlyList<T>> GetAllAsync(ISpecification<T> specs);
         Task AddAsync(T entity);
+        Task AddRangeAsync(IEnumerable<T> entities);
         Task RemoveAsync(int id);
         Task RemoveRangeAsync(IEnumerable<T> entities);
         Task UpdateAsync(T entity);
