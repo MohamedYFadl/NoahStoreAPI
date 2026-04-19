@@ -1,11 +1,11 @@
-###📦 NoahStoreAPI
+##📦 NoahStoreAPI
 A robust and scalable E-commerce backend built with ASP.NET Core Web API, designed using clean architecture principles to ensure maintainability and performance.
 
-###🚀 Overview
+##🚀 Overview
 NoahStoreAPI is a backend system for an online store that provides all core e-commerce functionalities including authentication, product management, and order processing.
 The project is structured to simulate a real-world production-ready API with a focus on scalability, clean code, and best practices.
 
-###✨ Features
+##✨ Features
 🔐 Authentication & Authorization (JWT)
 👤 User Registration & Login
 🛍️ Product Management (CRUD)
@@ -24,7 +24,7 @@ This project follows a layered/clean architecture approach:
 - Infrastructure   → Database & External Services
 
   
-###✔️ Benefits:
+##✔️ Benefits:
 Separation of concerns
 Scalable and maintainable
 Easy to test and extend
