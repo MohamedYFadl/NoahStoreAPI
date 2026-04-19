@@ -1,0 +1,114 @@
+﻿@model UserRoleViewModel
+@{
+    ViewData["Title"] = "Create User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Create a new user</h2>
+    <a asp-action="Index" asp-controller="User" class="btn btn-secondary">
+        <i class="fas fa-arrow-left me-2"></i>Back to Users
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">User Information</h5>
+            </div>
+            <div class="card-body">
+                <form method="post" asp-action="Create">
+                    <div class="row">
+
+                        <input type="text" class="form-control" asp-for="Id" hidden>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label asp-for="Name" class="form-label">Name</label>
+                                <input type="text" class="form-control" asp-for="Name" required>
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label asp-for="UserName" class="form-label">User Name</label>
+                                <input type="text" class="form-control" asp-for="UserName" required>
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" asp-for="Email" required>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" asp-for="PhoneNumber" required>
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Password" class="form-label">Password</label>
+                        <input type="password" class="form-control" asp-for="Password" required>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Role" class="form-label">Role</label>
+                        <select class="form-select" asp-for="Role" required asp-items="@Model.RolesList">
+                        </select>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn btn-primary" >
+                            <i class="fas fa-save me-2"></i>Save
+                        </button>
+                        <a asp-action="Index" class="btn btn-secondary me-md-2">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Guidelines</h5>
+            </div>
+            <div class="card-body">
+                <h6>Password Requirements:</h6>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success me-2"></i>At least 8 characters</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Include uppercase letter</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Include lowercase letter</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Include number</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Include special character</li>
+                </ul>
+
+                <hr>
+
+                <h6>Role Permissions:</h6>
+                <div class="mb-2">
+                    <span class="badge bg-danger">Admin</span>
+                    <small class="text-muted d-block">Full system access</small>
+                </div>
+                <div class="mb-2">
+                    <span class="badge bg-warning">Employee</span>
+                    <small class="text-muted d-block">Manage products & categories</small>
+                </div>
+                <div class="mb-2">
+                    <span class="badge bg-secondary">Customer</span>
+                    <small class="text-muted d-block">Basic user access</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

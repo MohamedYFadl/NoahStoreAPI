@@ -5,13 +5,15 @@ VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4CF49F10-5379-44F7-BC54-77084FF430E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoahStore.Core", "NoahStore.Core\NoahStore.Core.csproj", "{5B0F01AB-8915-4F96-B102-177317B9E77A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoahStore.Core", "NoahStore.Core\NoahStore.Core.csproj", "{5B0F01AB-8915-4F96-B102-177317B9E77A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoahStore.Infrastructure", "NoahStore.Infrastructure\NoahStore.Infrastructure.csproj", "{5ADFCC16-F23B-42DE-9EE5-699E22CAFDE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoahStore.Infrastructure", "NoahStore.Infrastructure\NoahStore.Infrastructure.csproj", "{5ADFCC16-F23B-42DE-9EE5-699E22CAFDE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoahStore.Service", "NoahStore.Service\NoahStore.Service.csproj", "{4005C572-24EE-4FEE-89C4-9CF6D2170F08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoahStore.Service", "NoahStore.Service\NoahStore.Service.csproj", "{4005C572-24EE-4FEE-89C4-9CF6D2170F08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoahStore.API", "NoahStore.API\NoahStore.API.csproj", "{0F0E72B8-2C89-4E6C-B311-111E1E8EFE04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoahStore.API", "NoahStore.API\NoahStore.API.csproj", "{0F0E72B8-2C89-4E6C-B311-111E1E8EFE04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminDashboard", "AdminDashboard\AdminDashboard.csproj", "{047065D5-978A-4B4C-B132-67429795943A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{0F0E72B8-2C89-4E6C-B311-111E1E8EFE04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F0E72B8-2C89-4E6C-B311-111E1E8EFE04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F0E72B8-2C89-4E6C-B311-111E1E8EFE04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{047065D5-978A-4B4C-B132-67429795943A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{047065D5-978A-4B4C-B132-67429795943A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{047065D5-978A-4B4C-B132-67429795943A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{047065D5-978A-4B4C-B132-67429795943A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 		{5ADFCC16-F23B-42DE-9EE5-699E22CAFDE3} = {4CF49F10-5379-44F7-BC54-77084FF430E2}
 		{4005C572-24EE-4FEE-89C4-9CF6D2170F08} = {4CF49F10-5379-44F7-BC54-77084FF430E2}
 		{0F0E72B8-2C89-4E6C-B311-111E1E8EFE04} = {4CF49F10-5379-44F7-BC54-77084FF430E2}
+		{047065D5-978A-4B4C-B132-67429795943A} = {4CF49F10-5379-44F7-BC54-77084FF430E2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A25F3C45-CC3A-48BB-8674-2F8591D67607}

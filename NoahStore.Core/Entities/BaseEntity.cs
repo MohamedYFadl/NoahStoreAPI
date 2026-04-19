@@ -6,7 +6,7 @@ namespace NoahStore.Core.Entities
     {
         [Required]
         public T Id { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; }
         public bool IsDeleted { get; set; } = false;
     }

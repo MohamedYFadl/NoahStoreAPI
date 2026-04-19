@@ -9,7 +9,6 @@ namespace NoahStore.Core.Entities
         public decimal Price { get; set; }
         public string SKU { get; set; }
         public int StockQuantity { get; set; }
-        public bool IsAvailaible { get; set; }
         public ICollection<ProductImage> Images { get; set; }
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
